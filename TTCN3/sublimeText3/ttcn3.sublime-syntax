@@ -1,0 +1,65 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: TTCN
+comment: For ttcn3 syntax
+file_extensions:
+  - ttcn3
+scope: source.ttcn3
+
+contexts:
+  main:
+    
+    - match: boolean|inout|return\s+|:=|\?|<|\+|->|\s+to\s+|integer|omit|#ifndef|#endif|^\s*if|#else|import from|^module|system|runs on|not\s+|\s+all|const|template|with|extension|extends|\bin\b|\bout\b
+      scope: keyword.other.ttcn3
+    
+    - match: (\btype\b)\s+(\b[a-zA-Z0-9_]*\b)(.*)
+      captures: 
+        1: keyword.other.ttcn3
+        2: storage.type.ttcn3
+        3: entity.name.struct.ttcn3
+
+    - match: (\bport\b)\s+(\b[a-zA-Z0-9_]*\b).*
+      captures: 
+        1: storage.type.ttcn3
+        2: entity.name.struct.ttcn3        
+    
+    - match: function\s+([a-zA-Z][a-zA-Z0-9_]+)
+      scope: keyword.function.ttcn3
+      captures:
+        1: entity.name.function.ttcn3
+
+    - match: ispresent|valueof|lengthof
+      scope: variable.function.ttcn3
+    
+    - match: ([a-zA-Z][a-zA-Z0-9_]+)\(.*\)
+      captures: 
+        1: variable.function.ttcn3
+
+    - match: \bvar\b
+      scope: storage.modifier.ttcn3
+
+    - match: GLO_FALSE|GLO_TRUE|false|\s+\d+
+      scope: constant.language.ttcn3
+
+    - match: (testcase)\s+([a-zA-Z][a-zA-Z0-9_]+)
+      captures:
+        1: keyword
+        2: entity.name.function
+
+    - match: \/\/.*
+      scope: comment.line.double-slash.ttcn3
+
+    - match: \/\*.*
+      scope: comment.line.block.ttcn3
+      set: mutilinecomment
+
+  mutilinecomment:
+
+    - match: .*\*\/
+      scope: comment.line.block.ttcn3
+      pop: true
+
+    - match: .*
+      scope: comment.line.block.ttcn3
+
