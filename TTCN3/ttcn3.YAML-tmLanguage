@@ -1,0 +1,48 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: TTCN3
+scopeName: source.ttcn3
+fileTypes: [ttcn3]
+uuid: b80100fe-b212-41e8-a023-e83d354fe6f7
+
+patterns:
+- comment: keyword
+  name: keyword.other.ttcn3
+  match: var|boolean|inout|return\s+|:=|\?|<|\+|->|\s+to\s+|integer|type record length|omit|#ifndef|#endif|^\s*if|#else|import from|^module|system|runs on|not\s+|\s+all
+
+- comment: testcase
+  name: keyword.testcase.ttcn3
+  match: (testcase)\s+([a-zA-Z][a-zA-Z0-9_]+)
+  captures:
+    '1': {name: keyword}
+    '2': {name: entity.name.function}
+
+- comment: function definiton
+  name: keyword.function.ttcn3
+  match: function\s+([a-zA-Z][a-zA-Z0-9_]+)
+  captures:
+    '1': {name: entity.name.function}
+
+- comment: built in function
+  name: entity.name.function.ttcn3
+  match: ispresent|valueof|lengthof
+
+- comment: user definded constants
+  name: constant.character.ttcn3
+  match: GLO_FALSE|GLO_TRUE|false|\s+\d+
+  captures:
+    '1': {name: none}
+    '2': {name: none}
+
+- comment: template
+  name: storage.type.ttcn3
+  match: \s+template
+
+- comment: string
+  name: string.ttcn3
+  match: \"[\/a-zA-Z][\/a-zA-Z0-9_\.]+\"
+
+- comment: comment
+  name: comment.ttcn3
+  match: \/\*.*|.*\*\/|\*.*
+...
