@@ -10,7 +10,7 @@ scope: source.ttcn3
 contexts:
   main:
     
-    - match: boolean|inout|return\s+|:=|\?|<|\+|->|\s+to\s+|integer|omit|#ifndef|#endif|^\s*if|#else|import from|^module|system|runs on|not\s+|\s+all|const|template|with|extension|extends|\bin\b|\bout\b
+    - match: boolean|inout|return\s+|:=|\?|<|\+|->|\s+to\s+|integer|omit|#ifndef|#endif|\bif\b|\belse\b|#else|import from|^module|system|runs on|not\s+|\s+all|const|template|\bwith\b|extension|extends|\bin\b|\bout\b
       scope: keyword.other.ttcn3
     
     - match: (\btype\b)\s+(\b[a-zA-Z0-9_]*\b)(.*)
@@ -49,6 +49,9 @@ contexts:
 
     - match: \/\/.*
       scope: comment.line.double-slash.ttcn3
+
+    - match: \/\*.*\*\/
+      scope: comment.line.block.ttcn3
 
     - match: \/\*.*
       scope: comment.line.block.ttcn3
